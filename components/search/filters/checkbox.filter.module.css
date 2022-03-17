@@ -1,0 +1,9 @@
+.checkboxInputSize {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+.checkboxLabelSize {
+  padding-left: 0.3rem !important;
+  padding-top: 0.15rem !important;
+}
