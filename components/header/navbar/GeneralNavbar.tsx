@@ -58,6 +58,7 @@ const GeneralNavbar: React.FC<GeneralNavbarProps> = ({ cssClassName }) => {
               className={styles.marginLeft}
             >
               <span className="brand-logo">e-jobs</span>
+              <sub className="text-white">BD</sub>
             </Navbar.Brand>
           </Link>
 

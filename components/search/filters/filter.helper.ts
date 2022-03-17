@@ -1,5 +1,5 @@
 export type CheckBoxType =
-  | "city"
+  | "cities"
   | "job-industries"
   | "job-type"
   | "career-level";
@@ -20,6 +20,8 @@ export interface CheckBoxFilterProps {
   items: CheckBoxItemsProps[];
   onChange: (value: CheckBoxPayloadProps) => void;
   showItemFilterInput?: boolean;
+  activeKey:string;
+  cssClass?:string
 }
 
 export const capitalizeFirstLetter = (letter: string) => {

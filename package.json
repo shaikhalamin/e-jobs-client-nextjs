@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "(npx kill-port 3000) && next dev",
+    "dev-start": "next dev",
     "lint": "next lint",
     "build": "next build",
     "start": "next start",

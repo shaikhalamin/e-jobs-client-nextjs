@@ -8,6 +8,8 @@ const CheckBoxSearchComponent: React.FC<CheckBoxFilterProps> = ({
   items,
   onChange,
   showItemFilterInput = false,
+  activeKey = "0",
+  cssClass,
 }) => {
   const [inputItems, setInputItems] = React.useState(items);
   const [filterInputs, setFilterInputs] = React.useState([] as string[]);
@@ -78,7 +80,11 @@ const CheckBoxSearchComponent: React.FC<CheckBoxFilterProps> = ({
 
   return (
     <div>
-      <Accordion defaultActiveKey="1" alwaysOpen={true}>
+      <Accordion
+        defaultActiveKey={activeKey}
+        alwaysOpen={true}
+        className={cssClass}
+      >
         <Accordion.Item eventKey="0">
           <Accordion.Header className="bg-white">
             {capitalizeFirstLetter(checkBoxType)}
@@ -97,7 +103,7 @@ const CheckBoxSearchComponent: React.FC<CheckBoxFilterProps> = ({
                 </Row>
               </Form>
             )}
-            <Form>
+            <Form className={styles.checkSearchMinHeight}>
               {inputItems.length > 0 &&
                 inputItems.map((data) => (
                   <div key={data.id} className="mt-2 mb-1">

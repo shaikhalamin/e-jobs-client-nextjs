@@ -7,3 +7,16 @@
   padding-left: 0.3rem !important;
   padding-top: 0.15rem !important;
 }
+
+.checkSearchMinHeight {
+  height: 13.125rem !important;
+  overflow-y: scroll;
+}
+
+.horizontalFilterBg {
+  background-color: #d1d7f1;
+}
+
+.horizontalFilterItem {
+  cursor: pointer;
+}
