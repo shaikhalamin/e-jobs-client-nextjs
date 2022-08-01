@@ -37,18 +37,18 @@ export type CompanyLinksType = NavLinksItem & {
 
 export const companyLinks: CompanyLinksType[] = [
   {
-    text: "運営会社",
-    href: "https://toggle.co.jp",
-    role: "operating-company-role",
+    text: "Comapnies",
+    href: "/companies",
+    role: "e-jobs-company-role",
     target: "_blank",
   },
   {
-    text: "利用規約",
+    text: "Terms & Conditions",
     href: "/terms-of-use",
     role: "terms-of-service-role",
   },
   {
-    text: "プライバシーポリシー",
+    text: "Privacy Policy",
     href: "/privacy-policy",
     role: "privacy-policy-role",
   },

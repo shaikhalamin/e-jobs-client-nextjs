@@ -51,7 +51,7 @@ const GeneralNavbarOffCanvas: React.FC<UserProps> = ({ ...user }) => {
           <hr className={`text-white bg-white`} />
           <Nav className="justify-content-end flex-grow-1 pe-3">
             <span className={`text-white fs-14 py-2 ${styles.lineHeight130}`}>
-              メニュー
+              Home
             </span>
             {navLinksGeneral.map((item) => {
               return (

@@ -5,7 +5,7 @@ import styles from "./search.module.css";
 
 const GeneralSearchComponent = () => {
   return (
-    <div className={`${styles.searchBg} py-4`}>
+    <div className={`${styles.searchBg} py-5`}>
       <Container fluid>
         <Row>
           <Col lg={{ span: 8, offset: 2 }} md={{ span: 8, offset: 2 }}>
