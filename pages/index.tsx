@@ -1,17 +1,30 @@
+import { useEffect, ReactElement, useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import GeneralLayout from "@/components/layouts/GeneralLayout";
+import CheckBoxSearchComponent from "@/components/search/filters/CheckBoxSearchComponent";
+import { CheckBoxPayloadProps } from "@/components/search/filters/filter.helper";
+import HorizontalFilterComponent from "@/components/search/filters/HorizontalFilterComponent";
 import {
   checkBoxCareerLevel,
   checkBoxCities,
   checkBoxIndustries,
   jobLists,
 } from "@/components/data/index.data";
-import GeneralLayout from "@/components/layouts/GeneralLayout";
-import CheckBoxSearchComponent from "@/components/search/filters/CheckBoxSearchComponent";
-import { CheckBoxPayloadProps } from "@/components/search/filters/filter.helper";
-import HorizontalFilterComponent from "@/components/search/filters/HorizontalFilterComponent";
-import { ReactElement } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { getJobCirculars } from "helpers/api/job-circulars";
+import JobCircularList from "@/components/home/JobCircularList";
+import { Circular } from "@/components/interfaces/job.circulars";
 
 export default function Home() {
+
+  const [jobCirculars, setJobCirculars] = useState([] as Circular[]);
+
+  useEffect(() => {
+    getJobCirculars().then((result:any) => {
+      //console.log(result.data)
+      setJobCirculars(result.data)
+    });
+  }, []);
+
   const handleCheckBoxSearch = (data: CheckBoxPayloadProps) => {
     // console.log("received data in parent component ,,,: ");
     // console.log(data.type, [...data.items]);
@@ -67,7 +80,9 @@ export default function Home() {
               </Col>
             </Row>
 
-            <Row className="mt-3 mb-3">
+            <JobCircularList circulars={jobCirculars} />
+
+            {/* <Row className="mt-3 mb-3">
               {jobLists &&
                 jobLists.map((job, idx_job) => (
                   <Col
@@ -96,7 +111,7 @@ export default function Home() {
                     </Row>
                   </Col>
                 ))}
-            </Row>
+            </Row> */}
           </Col>
         </Row>
       </Container>
