@@ -2,7 +2,7 @@ import axios from "axios";
 import _ from "lodash";
 import apiurls from "./common/api.urls";
 
-const JOB_CIRCULARS_URL = `${apiurls.base_url}${apiurls.job_circulars.base}`;
+const JOB_CIRCULARS_URL = `${apiurls.job_circulars.base}`;
 
 export const getJobCirculars = async () => {
     return axios.get(JOB_CIRCULARS_URL);

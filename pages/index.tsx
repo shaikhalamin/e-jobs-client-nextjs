@@ -20,8 +20,7 @@ export default function Home() {
 
   useEffect(() => {
     getJobCirculars().then((result:any) => {
-      //console.log(result.data)
-      setJobCirculars(result.data)
+      setJobCirculars(result.data.data)
     });
   }, []);
 
@@ -71,14 +70,14 @@ export default function Home() {
             />
           </Col>
           <Col lg={9} md={8} sm={12} xs={12} className="ml-3">
-            <Row className="mb-3">
+            {/* <Row className="mb-3">
               <Col lg={2} md={2} sm={2} xs={2}>
                 <h6 className="mt-3">Popular Filters : </h6>
               </Col>
               <Col lg={10} md={10} sm={10} xs={10}>
                 <HorizontalFilterComponent data={popularFilterItems} />
               </Col>
-            </Row>
+            </Row> */}
 
             <JobCircularList circulars={jobCirculars} />
 
