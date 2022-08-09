@@ -25,20 +25,20 @@ export default function Home() {
   }, []);
 
   const handleCheckBoxSearch = (data: CheckBoxPayloadProps) => {
-    // console.log("received data in parent component ,,,: ");
-    // console.log(data.type, [...data.items]);
+    console.log("received data in parent component ,,,: ");
+    console.log(data.type, [...data.items]);
   };
 
-  const popularFilterItems: CheckBoxPayloadProps[] = [
-    {
-      type: "cities",
-      items: ["Remote", "dhaka"],
-    },
-    {
-      type: "job-industries",
-      items: ["it-telecommunication", "accounting", "agriculture"],
-    },
-  ];
+  // const popularFilterItems: CheckBoxPayloadProps[] = [
+  //   {
+  //     type: "cities",
+  //     items: ["Remote", "dhaka"],
+  //   },
+  //   {
+  //     type: "job-industries",
+  //     items: ["it-telecommunication", "accounting", "agriculture"],
+  //   },
+  // ];
 
   return (
     <div>

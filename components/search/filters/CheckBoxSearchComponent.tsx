@@ -1,7 +1,7 @@
-import React, { KeyboardEvent, useCallback, useEffect, useMemo } from "react";
+import React, { ChangeEvent, KeyboardEvent, useCallback, useEffect } from "react";
 import { Accordion, Col, Form, Row } from "react-bootstrap";
 import styles from "./checkbox.filter.module.css";
-import { capitalizeFirstLetter, CheckBoxFilterProps } from "./filter.helper";
+import { capitalizeFirstLetter, CheckBoxFilterProps, FilterInputs } from "./filter.helper";
 
 const CheckBoxSearchComponent: React.FC<CheckBoxFilterProps> = ({
   checkBoxType,
@@ -12,25 +12,25 @@ const CheckBoxSearchComponent: React.FC<CheckBoxFilterProps> = ({
   cssClass,
 }) => {
   const [inputItems, setInputItems] = React.useState(items);
-  const [filterInputs, setFilterInputs] = React.useState([] as string[]);
+  const [filterInputs, setFilterInputs] = React.useState([] as FilterInputs[]);
   const [searched, setSearched] = React.useState(false);
 
-  const handleFilterInputChange = (value: string) => {
+  const handleFilterInputChange = (value: string, id?: number) => {
     let checker = false;
-    if (!filterInputs.includes(value)) {
-      setFilterInputs((prevState) => [...prevState, value]);
+    if (!filterInputs.find((item: FilterInputs) => item.value === value)) {
+      setFilterInputs((prevState) => [...prevState, { id, value } as FilterInputs]);
       toggleCheckBox(value, true);
       checker = true;
     } else {
       setFilterInputs((prevState) => [
-        ...prevState.filter((item) => item !== value),
+        ...prevState.filter((item: FilterInputs) => item.value !== value),
       ]);
       toggleCheckBox(value, false);
       checker = false;
     }
 
     if (searched) {
-      const checkExist = filterInputs.includes(value);
+      const checkExist = filterInputs.find((item: FilterInputs) => item.value === value)
       const missingState = [...filterInputs, !checkExist && value];
       const modifiedSearchArray = inputItems.map((item) => {
         if (missingState.includes(item.alias)) {
@@ -97,7 +97,7 @@ const CheckBoxSearchComponent: React.FC<CheckBoxFilterProps> = ({
                     <Form.Control
                       placeholder={`Search in ${checkBoxType} ...`}
                       type="text"
-                      onKeyUp={(e) => handleInputItemChange(e)}
+                      onKeyUp={handleInputItemChange}
                     />
                   </Col>
                 </Row>
@@ -113,8 +113,8 @@ const CheckBoxSearchComponent: React.FC<CheckBoxFilterProps> = ({
                         className={`${styles.checkboxInputSize}`}
                         value={data.alias}
                         checked={!!data.checked}
-                        onChange={(e) =>
-                          handleFilterInputChange(e.target.value)
+                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                          handleFilterInputChange(e.target.value, data.id)
                         }
                       />
                       <Form.Check.Label

@@ -1,3 +1,8 @@
+export interface FilterInputs {
+  id: number,
+  value: string
+}
+
 export type CheckBoxType =
   | "cities"
   | "job-industries"
@@ -6,7 +11,7 @@ export type CheckBoxType =
 
 export interface CheckBoxPayloadProps {
   type: CheckBoxType;
-  items: string[];
+  items: FilterInputs[];
 }
 export interface CheckBoxItemsProps {
   id: number;
