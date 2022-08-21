@@ -5,9 +5,16 @@ export interface FilterInputs {
 
 export type CheckBoxType =
   | "cities"
-  | "job-industries"
-  | "job-type"
-  | "career-level";
+  | "jobIndustries"
+  | "jobType"
+  | "expericnceLevel";
+
+
+// EmploymentType).findOne(id);
+// JobIndustry).findOne(id);
+// JobLevel).findOne(id);
+
+
 
 export interface CheckBoxPayloadProps {
   type: CheckBoxType;

@@ -5,7 +5,7 @@ import CheckBoxSearchComponent from "@/components/search/filters/CheckBoxSearchC
 import { CheckBoxPayloadProps } from "@/components/search/filters/filter.helper";
 import HorizontalFilterComponent from "@/components/search/filters/HorizontalFilterComponent";
 import {
-  checkBoxCareerLevel,
+  checkBoxExperienceLevel,
   checkBoxCities,
   checkBoxIndustries,
   jobLists,
@@ -54,7 +54,7 @@ export default function Home() {
               cssClass="mt-3 mb-1"
             />
             <CheckBoxSearchComponent
-              checkBoxType="job-industries"
+              checkBoxType="jobIndustries"
               items={checkBoxIndustries}
               onChange={handleCheckBoxSearch}
               showItemFilterInput={true}
@@ -62,8 +62,8 @@ export default function Home() {
               cssClass="mt-3 mb-2"
             />
             <CheckBoxSearchComponent
-              checkBoxType="career-level"
-              items={checkBoxCareerLevel}
+              checkBoxType="expericnceLevel"
+              items={checkBoxExperienceLevel}
               onChange={handleCheckBoxSearch}
               activeKey="0"
               cssClass="mt-3 mb-2"

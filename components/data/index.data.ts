@@ -157,37 +157,31 @@ export const levelOfStudies = [
   },
 ];
 
-export const checkBoxCareerLevel = [
+export const checkBoxExperienceLevel = [
   {
     id: 38,
     title: "No experience",
-    alias: "noexperience",
+    alias: "0",
     checked: false,
   },
   {
     id: 39,
     title: "Entry-Level (< 2 years)",
-    alias: "entry-level<2years",
+    alias: "0-2",
     checked: false,
   },
   {
     id: 40,
     title: "Mid-Level (2-5 years)",
-    alias: "mid-level2-5years",
+    alias: "2-5",
     checked: false,
   },
   {
     id: 41,
     title: "Senior-Level (> 5 years)",
-    alias: "senior-level>5years",
+    alias: "5-30",
     checked: false,
-  },
-  {
-    id: 42,
-    title: "Manager / Executive",
-    alias: "manager-executive",
-    checked: false,
-  },
+  }
 ];
 
 export const jobLists = [
