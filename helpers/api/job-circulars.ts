@@ -47,3 +47,7 @@ export const prepareFormData = (company: any, method = "POST") => {
 
     return formData;
 };
+
+export const filterJobCirculars = (filters: string) => {
+    return axios.get(`${JOB_CIRCULARS_URL}?${filters}`);
+}

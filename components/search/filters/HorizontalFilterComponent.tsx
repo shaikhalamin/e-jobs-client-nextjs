@@ -21,7 +21,7 @@ const HorizontalFilterComponent: React.FC<HorizontalFilterProps> = ({
                 className={`rounded-pill mr-5 ml-5 mx-1 ${styles.horizontalFilterItem}`}
               >
                 <span className="ml-1 mr-1" key={idx_}>
-                  {capitalizeFirstLetter(item)}
+                  {capitalizeFirstLetter(item.value)}
                 </span>
               </ListGroup.Item>
             ))

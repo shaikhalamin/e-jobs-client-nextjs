@@ -9,13 +9,6 @@ export type CheckBoxType =
   | "jobType"
   | "expericnceLevel";
 
-
-// EmploymentType).findOne(id);
-// JobIndustry).findOne(id);
-// JobLevel).findOne(id);
-
-
-
 export interface CheckBoxPayloadProps {
   type: CheckBoxType;
   items: FilterInputs[];
