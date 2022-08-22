@@ -5,7 +5,7 @@ export interface FilterInputs {
 
 export type CheckBoxType =
   | "cities"
-  | "jobIndustries"
+  | "jobIndustry"
   | "jobType"
   | "expericnceLevel";
 

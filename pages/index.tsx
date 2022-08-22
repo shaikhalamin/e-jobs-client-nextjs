@@ -1,5 +1,5 @@
-import { useEffect, ReactElement, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { useEffect, ReactElement, useState, useCallback } from "react";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import GeneralLayout from "@/components/layouts/GeneralLayout";
 import CheckBoxSearchComponent from "@/components/search/filters/CheckBoxSearchComponent";
 import { CheckBoxPayloadProps } from "@/components/search/filters/filter.helper";
@@ -15,37 +15,51 @@ import JobCircularList from "@/components/home/JobCircularList";
 import { Circular } from "@/components/interfaces/job.circulars";
 import BasicPagination from "@/components/pagination/BasicPagination";
 
+interface FilterItems {
+  jobLocation?: number;
+  jobIndustry?: number[];
+  company?: number;
+  employmentType?: number;
+  jobLevel?: number;
+  expericnceLevel?: string
+}
 export default function Home() {
 
   const [jobCirculars, setJobCirculars] = useState([] as Circular[]);
   const [meta, setMeta] = useState({
     all_total: 0,
-    page: 0,
-    per_page: 0,
+    page: 1,
+    per_page: 20,
     total: 0
   })
 
+  const [filters, setFilters] = useState({} as FilterItems);
+
+
   useEffect(() => {
-    getJobCirculars().then((result: any) => {
-      setJobData(result)
-    });
+    filterJobCirculars(`page=${meta.page}&per_page=${meta.per_page}`).then((result: any) => {
+      setJobCirculars(result?.data?.data)
+      const { all_total, total } = result?.data?.meta;
+      setMeta((prevState) => ({
+        ...prevState,
+        all_total,
+        total,
+      }))
+    })
+
+  }, [meta.page, meta.per_page]);
+
+  const handleCheckBoxSearch = useCallback((data: CheckBoxPayloadProps) => {
+    //console.log(data.type, [...data.items]);
+    const { type, items } = data;
+    setFilters((prev) => ({ ...prev, [type]: items }))
   }, []);
 
-  const setJobData = (result: any) => {
-    setJobCirculars(result?.data?.data)
-    setMeta(result?.data?.meta);
-  }
-
-
-  const handleCheckBoxSearch = (data: CheckBoxPayloadProps) => {
-    // console.log("received data in parent component ,,,: ");
-    // console.log(data.type, [...data.items]);
-  };
-
   const handlePagination = (pageNumber: number) => {
-    filterJobCirculars(`page=${pageNumber}&per_page=${20}`).then((result: any) => {
-      setJobData(result)
-    })
+    setMeta((prevState) => ({
+      ...prevState,
+      page: pageNumber
+    }))
   }
 
   return (
@@ -62,7 +76,7 @@ export default function Home() {
               cssClass="mt-3 mb-1"
             />
             <CheckBoxSearchComponent
-              checkBoxType="jobIndustries"
+              checkBoxType="jobIndustry"
               items={checkBoxIndustries}
               onChange={handleCheckBoxSearch}
               showItemFilterInput={true}
@@ -79,9 +93,26 @@ export default function Home() {
           </Col>
           <Col lg={9} md={8} sm={12} xs={12} className="ml-3">
 
+            <Row className="justify-content-md-end">
+              <Col md={{ span: 2, offset: 5 }}>
+                <Form.Group className="">
+                  <Form.Select name="perpage" value={meta.per_page} onChange={(e) => setMeta((prevState) => {
+                    return ({
+                      ...prevState,
+                      per_page: +e.target.value
+                    })
+                  })} aria-label="">
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+            </Row>
+
             <JobCircularList circulars={jobCirculars} />
             <br />
-            <BasicPagination total={meta.all_total} onChange={handlePagination} />
+            <BasicPagination total={meta.all_total} perPage={meta.per_page} onChange={handlePagination} />
           </Col>
         </Row>
       </Container>
